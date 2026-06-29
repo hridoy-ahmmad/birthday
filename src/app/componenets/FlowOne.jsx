@@ -89,9 +89,6 @@ const FlowOne = () => {
             <audio ref={audioRef}>
                 <source src="/birthday.mp3" type="audio/mpeg" />
             </audio>
-            <audio autoPlay loop>
-                <source src="/birthdaysong.mp3" type="audio/mpeg" />
-            </audio>
 
             {open && (
                 <Confetti
