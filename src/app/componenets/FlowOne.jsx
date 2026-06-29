@@ -85,7 +85,7 @@ const FlowOne = () => {
     };
 
     return (
-        <main className="relative min-h-screen flex items-center justify-center overflow-hidden px-5 bg-linear-to-b from-pink-200 via-pink-100 to-rose-200">
+        <main className="relative min-h-screen flex items-center justify-center overflow-hidden px-5 ">
             <audio ref={audioRef}>
                 <source src="/birthday.mp3" type="audio/mpeg" />
             </audio>

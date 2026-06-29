@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.3; // 30% volume
+      audioRef.current.volume = 0.2;
     }
   }, []);
 
