@@ -78,8 +78,8 @@ const Gallery = ({ onNext, onBack }) => {
                         <Image
                             src={photo}
                             alt={`memory ${index + 1}`}
-                            width={500}
-                            height={500}
+                            width={400}
+                            height={400}
                             className="w-full h-36 sm:h-44 object-cover filter brightness-[0.95] hover:brightness-105 transition-all duration-500"
                         />
                         {/* ছবির উপরে হালকা সফট ডার্ক ওভারলে—যা লাক্সারি সিনেমাটিক লুক দেয় */}

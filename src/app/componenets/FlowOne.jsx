@@ -265,7 +265,7 @@ const FlowOne = () => {
                     className="z-10 max-w-sm bg-gradient-to-b from-gray-950/60 to-gray-950/20 backdrop-blur-2xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-pink-500/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)] text-center relative overflow-hidden"
                 >
                     {/* ব্যাকগ্রাউন্ডে একটা সফট গ্লো */}
-                    <div className="absolute -top-10 -left-10 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
+                    <div className="absolute -top-10 -left-10  bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
                     <motion.h1
                         initial={{ opacity: 0, y: -20 }}
@@ -282,7 +282,7 @@ const FlowOne = () => {
                         Dearest Prity... ❤️
                     </motion.h2>
 
-                    <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-pink-500/40 to-transparent mx-auto my-5" />
+                    <div className=" h-[1px] bg-gradient-to-r from-transparent via-pink-500/40 to-transparent mx-auto my-5" />
 
                     <motion.p
                         initial={{ opacity: 0 }}
