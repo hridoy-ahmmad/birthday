@@ -88,6 +88,7 @@ export default function RootLayout({ children }) {
         {/* Main Content */}
         <main className="relative z-10 flex-1 px-12 py-12">
           {children}
+         
         </main>
 
       </body>

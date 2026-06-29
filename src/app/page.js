@@ -7,9 +7,6 @@ export default function Home() {
 
   return (
     <div>
-      <audio autoPlay loop>
-        <source src="birthday2.mp3" type="audio/mpeg" />
-      </audio>
       <FlowOne />
     </div>
   );

@@ -143,6 +143,9 @@ const FlowOne = () => {
                     ))}
 
                     <div>
+                        <audio autoPlay loop>
+                            <source src="/birthdaysong.mp3" type="audio/mpeg" />
+                        </audio>
                         <motion.div
                             initial={{
                                 opacity: 0,
@@ -193,7 +196,7 @@ const FlowOne = () => {
                                 duration: 0.7,
                                 delay: 0.4
                             }}
-                            className="mt-2 text-4xl italic font-bold text-rose-600"
+                            className="mt-2 text-6xl italic font-bold text-rose-600"
                         >
                             Prity ❤️
                         </motion.h2>
