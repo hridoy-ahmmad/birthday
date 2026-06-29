@@ -11,19 +11,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata = {
   title: "Happy Birthday Prity ❤️",
   description: "A special birthday surprise made with love.",
-};
+  icons: {
+    icon: '/heart.jpg',
+    type: "image/jpeg"
+  },
+}
 
 export default function RootLayout({ children }) {
   const horizontalHearts = Array(35).fill("❤️");
   const verticalHearts = Array(18).fill("❤️");
 
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+
     >
       <body className="relative min-h-screen overflow-x-hidden bg-linear-to-br from-pink-200 via-rose-50 to-pink-200">
 
@@ -88,7 +95,7 @@ export default function RootLayout({ children }) {
         {/* Main Content */}
         <main className="relative z-10 flex-1 px-12 py-12">
           {children}
-         
+
         </main>
 
       </body>
