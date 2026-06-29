@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaAngleDoubleRight } from "react-icons/fa";
+import { FaAngleDoubleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 
 const reasons = [
     {
@@ -57,7 +57,7 @@ const reasons = [
     }
 ];
 
-const Reasons = () => {
+const Reasons = ({ onBack }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [showFinal, setShowFinal] = useState(false);
     const [showTheEnd, setShowTheEnd] = useState(false);
@@ -70,10 +70,45 @@ const Reasons = () => {
         }
     };
 
+    const handleBack = () => {
+        if (showTheEnd) {
+            setShowTheEnd(false);
+            return;
+        }
+
+        if (showFinal) {
+            setShowFinal(false);
+            return;
+        }
+
+        if (currentIndex > 0) {
+            setCurrentIndex((prev) => prev - 1);
+            return;
+        }
+
+        onBack?.();
+    };
+
     return (
-        <section className="px-5 text-center max-w-md mx-auto relative min-h-[65vh] flex flex-col justify-center items-center">
+        <section className="px-2 text-center max-w-md mx-auto relative min-h-screen flex flex-col justify-center items-center">
+            <div className="flex ">
+                <motion.button
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.92 }}
+                    onClick={handleBack}
+                    aria-label="Go back"
+                    className="absolute left-2 top-10 z-30 text-pink-100 hover:text-white drop-shadow-[0_0_12px_rgba(244,114,182,0.7)] transition-colors "
+                >
+
+                    <FaArrowAltCircleLeft className="text-4xl " />
+
+                </motion.button>
+            </div>
+
             {/* ব্যাকগ্রাউন্ড গ্লো ইফেক্ট */}
-            <div className="absolute top-0 inset-x-0 h-48 bg-gradient-to-b from-pink-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 inset-x-0 bg-gradient-to-b from-pink-500/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
             <AnimatePresence mode="wait">
                 {!showFinal ? (
@@ -86,17 +121,17 @@ const Reasons = () => {
                         className="w-full flex flex-col items-center"
                     >
                         {/* হেডিং */}
-                        <div className="mb-8 select-none">
-                            <span className="text-xs font-bold tracking-[0.3em] uppercase text-pink-400/80 block mb-1">
+                        <div className="mb-6 sm:mb-8 select-none">
+                            <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-pink-400/80 block mb-1">
                                 Reason {currentIndex + 1} of {reasons.length}
                             </span>
-                            <h1 className="text-4xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 drop-shadow-[0_0_15px_rgba(244,114,182,0.3)] py-1">
+                            <h1 className="text-3xl sm:text-4xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 drop-shadow-[0_0_15px_rgba(244,114,182,0.3)] py-1">
                                 Why You`re So Special ❤️
                             </h1>
                         </div>
 
                         {/* রিজন কার্ড */}
-                        <div className="w-full min-h-[220px] flex items-center justify-center relative">
+                        <div className="w-full min-h-[190px] sm:min-h-[220px] flex items-center justify-center relative">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={currentIndex}
@@ -104,15 +139,15 @@ const Reasons = () => {
                                     animate={{ opacity: 1, x: 0, scale: 1 }}
                                     exit={{ opacity: 0, x: -20, scale: 0.98 }}
                                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                                    className="w-full bg-gray-950/40 border border-pink-500/10 rounded-[2.5rem] p-7 backdrop-blur-2xl shadow-2xl text-center flex flex-col items-center justify-center"
+                                    className="w-full bg-gray-950/40 border border-pink-500/10 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-7 backdrop-blur-2xl shadow-2xl text-center flex flex-col items-center justify-center"
                                 >
-                                    <span className="text-4xl mb-4 block drop-shadow-[0_0_10px_rgba(244,114,182,0.2)]">
+                                    <span className="text-3xl sm:text-4xl mb-3 sm:mb-4 block drop-shadow-[0_0_10px_rgba(244,114,182,0.2)]">
                                         {reasons[currentIndex].emoji}
                                     </span>
-                                    <h2 className="text-xl font-bold text-pink-200 mb-3 tracking-wide">
+                                    <h2 className="text-lg sm:text-xl font-bold text-pink-200 mb-2 sm:mb-3 tracking-wide">
                                         {reasons[currentIndex].title}
                                     </h2>
-                                    <p className="text-pink-100/80 leading-relaxed text-sm antialiased font-medium px-2">
+                                    <p className="text-pink-100/80 leading-relaxed text-xs sm:text-sm antialiased font-medium px-1 sm:px-2">
                                         {reasons[currentIndex].message}
                                     </p>
                                 </motion.div>
@@ -120,7 +155,7 @@ const Reasons = () => {
                         </div>
 
                         {/* বাটন এরিয়া */}
-                        <div className="w-full mt-8">
+                        <div className="w-full mt-6 sm:mt-8">
                             <AnimatePresence mode="wait">
                                 {!isLastReason ? (
                                     /* সাধারণ নেক্সট বাটন */
@@ -133,7 +168,7 @@ const Reasons = () => {
                                         whileHover={{ scale: 1.02 }}
                                         whileTap={{ scale: 0.98 }}
                                         onClick={handleNext}
-                                        className="w-full py-3.5 rounded-full border border-pink-500/30 bg-pink-950/20 hover:bg-pink-600/20 text-pink-200 hover:text-white text-xs font-bold tracking-widest uppercase backdrop-blur-md transition-all duration-300 flex justify-center items-center gap-2"
+                                        className="w-full py-3 sm:py-3.5 rounded-full border border-pink-500/30 bg-pink-950/20 hover:bg-pink-600/20 text-pink-200 hover:text-white text-[10px] sm:text-xs font-bold tracking-[0.14em] sm:tracking-widest uppercase backdrop-blur-md transition-all duration-300 flex justify-center items-center gap-2"
                                     >
                                         {currentIndex + 1} - Next Reason ✨ <FaAngleDoubleRight className="text-base" />
                                     </motion.button>
@@ -148,7 +183,7 @@ const Reasons = () => {
                                         whileHover={{ scale: 1.03 }}
                                         whileTap={{ scale: 0.97 }}
                                         onClick={() => setShowFinal(true)}
-                                        className="w-full py-3.5 rounded-full bg-gradient-to-r from-pink-600 via-rose-600 to-pink-600 text-white text-xs font-bold tracking-widest uppercase shadow-[0_10px_25px_rgba(219,39,119,0.3)] hover:shadow-[0_0_35px_rgba(219,39,119,0.6)] transition-all duration-300 flex justify-center items-center gap-3"
+                                        className="w-full py-3 sm:py-3.5 rounded-full bg-gradient-to-r from-pink-600 via-rose-600 to-pink-600 text-white text-[10px] sm:text-xs font-bold tracking-[0.14em] sm:tracking-widest uppercase shadow-[0_10px_25px_rgba(219,39,119,0.3)] hover:shadow-[0_0_35px_rgba(219,39,119,0.6)] transition-all duration-300 flex justify-center items-center gap-3"
                                     >
                                         ✨ Unfold My Final Message <FaAngleDoubleRight className="text-base" />
                                     </motion.button>
@@ -164,7 +199,7 @@ const Reasons = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="bg-gradient-to-b from-gray-950/80 via-gray-950/60 to-gray-950/40 backdrop-blur-3xl p-8 rounded-[2.5rem] border border-pink-500/20 shadow-[0_20px_50px_rgba(244,63,94,0.1)] relative overflow-hidden w-full text-center group"
+                        className="bg-gradient-to-b from-gray-950/80 via-gray-950/60 to-gray-950/40 backdrop-blur-3xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-pink-500/20 shadow-[0_20px_50px_rgba(244,63,94,0.1)] relative overflow-hidden w-full text-center group"
                     >
                         {/* ডাবল ডাইনামিক গ্লো ইফেক্ট (ফাঁকা ভাব দূর করতে) */}
                         <div className="absolute -top-12 -right-12 w-40 h-40 bg-pink-500/15 rounded-full blur-3xl pointer-events-none" />
@@ -180,7 +215,7 @@ const Reasons = () => {
 
                         {/* মেইন কন্টেন্ট এরিয়া */}
                         <div className="space-y-5 my-2">
-                            <p className="text-pink-100/90 font-medium leading-relaxed text-[15px] antialiased">
+                            <p className="text-pink-100/90 font-medium leading-relaxed text-sm sm:text-[15px] antialiased">
                                 This day is so incredibly special to me, because it’s the day the most beautiful person was born.
                             </p>
 
@@ -188,14 +223,14 @@ const Reasons = () => {
                             <div className="py-2 relative flex flex-col items-center justify-center">
                                 <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-pink-500/40 to-transparent mb-3" />
 
-                                <span className="text-3xl sm:text-4xl font-serif italic font-black block text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 drop-shadow-[0_0_20px_rgba(244,114,182,0.5)] py-1 select-none">
+                                <span className="text-2xl sm:text-4xl font-serif italic font-black block text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 drop-shadow-[0_0_20px_rgba(244,114,182,0.5)] py-1 select-none">
                                     Happy Birthday, Prity!
                                 </span>
 
                                 <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-pink-500/40 to-transparent mt-3" />
                             </div>
 
-                            <p className="text-pink-100/80 font-medium leading-relaxed text-[15px] antialiased px-1">
+                            <p className="text-pink-100/80 font-medium leading-relaxed text-sm sm:text-[15px] antialiased px-1">
                                 You bring so much light, color, and absolute magic into my life just by being in it. I promise to be right by your side through every single chapter of your journey. 💖
                             </p>
                         </div>
@@ -218,7 +253,7 @@ const Reasons = () => {
                             whileHover={{ scale: 1.02, shadow: "0_0_30px_rgba(219,39,119,0.5)" }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => setShowTheEnd(true)}
-                            className="w-full py-3.5 mt-5 rounded-full bg-gradient-to-r from-pink-600 via-rose-600 to-pink-600 hover:from-pink-500 hover:to-rose-500 text-white text-xs font-bold tracking-widest uppercase shadow-[0_10px_30px_rgba(219,39,119,0.25)] transition-all duration-300 flex justify-center items-center gap-3"
+                            className="w-full py-3 sm:py-3.5 mt-5 rounded-full bg-gradient-to-r from-pink-600 via-rose-600 to-pink-600 hover:from-pink-500 hover:to-rose-500 text-white text-[10px] sm:text-xs font-bold tracking-[0.14em] sm:tracking-widest uppercase shadow-[0_10px_30px_rgba(219,39,119,0.25)] transition-all duration-300 flex justify-center items-center gap-3"
                         >
                             Complete Journey <FaAngleDoubleRight className="text-base animate-bounce-horizontal" />
                         </motion.button>
@@ -232,16 +267,16 @@ const Reasons = () => {
                         transition={{ type: "spring", stiffness: 100, damping: 15 }}
                         className="text-center select-none"
                     >
-                        <h2 className="text-3xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 drop-shadow-[0_0_20px_rgba(244,114,182,0.4)]">
+                        <h2 className="text-2xl sm:text-3xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 drop-shadow-[0_0_20px_rgba(244,114,182,0.4)]">
                             🤍 I love you 🤍
                         </h2>
-                        <p className="text-sm tracking-[0.4em] uppercase text-pink-400/60 mt-3 font-bold">
+                        <p className="text-xs sm:text-sm tracking-[0.24em] sm:tracking-[0.4em] uppercase text-pink-400/60 mt-3 font-bold">
                             Forever & Always
                         </p>
-                        <p className="text-xs tracking-[0.4em]  mt-3 ">
+                        <p className="text-[10px] sm:text-xs tracking-[0.24em] sm:tracking-[0.4em]  mt-3 ">
                             (Hridoy Ahmmad)
                         </p>
-                        <p className="text-3xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 drop-shadow-[0_0_20px_rgba(244,114,182,0.4)] mt-10">The End..</p>
+                        <p className="text-2xl sm:text-3xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 drop-shadow-[0_0_20px_rgba(244,114,182,0.4)] mt-10">The End..</p>
                     </motion.div>
                 )}
             </AnimatePresence>

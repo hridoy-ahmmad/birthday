@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Gallery from "./Gallery";
 import Reasons from "./Reasons";
 import Image from "next/image";
-import { FaAngleDoubleRight, FaArrowAltCircleRight } from "react-icons/fa";
+import { FaAngleDoubleRight, FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const balloons = [
     { left: "8%", top: "8%" },
@@ -49,6 +49,27 @@ const FlowOne = () => {
         }, 300);
     };
 
+    const handleBack = () => {
+        if (showReasons) {
+            setShowReasons(false);
+            return;
+        }
+
+        if (showGallery) {
+            setShowGallery(false);
+            return;
+        }
+
+        if (showLetter) {
+            setShowLetter(false);
+            return;
+        }
+
+        if (open) {
+            setOpen(false);
+        }
+    };
+
     const textAnimation = {
         initial: { opacity: 0, y: -60 },
         animate: { opacity: 1, y: 0 },
@@ -61,8 +82,22 @@ const FlowOne = () => {
         transition: { duration: 0.7, delay: 0.3 }
     };
 
+    const BackButton = () => (
+        <motion.button
+            initial={{ opacity: 0, x: -16 }}
+            animate={{ opacity: 1, x: 0 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            onClick={handleBack}
+            aria-label="Go back"
+            className="fixed left-10 top-10 z-30 text-pink-100 hover:text-white drop-shadow-[0_0_12px_rgba(244,114,182,0.7)] transition-colors"
+        >
+            <FaArrowAltCircleLeft className="text-4xl" />
+        </motion.button>
+    );
+
     return (
-        <main className="relative min-h-screen flex items-center justify-center overflow-hidden px-5">
+        <main className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-5">
             <audio ref={audioRef}>
                 <source src="/birthday.mp3" type="audio/mpeg" />
             </audio>
@@ -76,6 +111,8 @@ const FlowOne = () => {
                 />
             )}
 
+            {open && !showGallery && !showReasons && <BackButton />}
+
             {!open ? (
                 <motion.div
                     {...textAnimation}
@@ -84,7 +121,7 @@ const FlowOne = () => {
                     <div className="flex justify-center my-6">
                         <div className="relative p-1 rounded-full bg-gradient-to-tr from-pink-500 via-rose-500 to-rose-600 shadow-[0_0_25px_rgba(244,63,94,0.4)] transition-transform duration-500 hover:scale-105">
                             {/* ইমেজের চারপাশে ডার্ক গ্লাস রিং */}
-                            <div className="rounded-full overflow-hidden bg-gray-950 w-[150px] h-[150px] flex items-center justify-center border border-white/10">
+                            <div className="rounded-full overflow-hidden bg-gray-950 w-32 h-32 sm:w-[150px] sm:h-[150px] flex items-center justify-center border border-white/10">
                                 <Image
                                     alt="Us"
                                     src="/us.jpg"
@@ -95,16 +132,16 @@ const FlowOne = () => {
                             </div>
                         </div>
                     </div>
-                    <h1 className="text-sm tracking-[0.2em] uppercase text-rose-400/80 font-bold">
+                    <h1 className="text-xs sm:text-sm tracking-[0.16em] sm:tracking-[0.2em] uppercase text-rose-400/80 font-bold">
                         Happy Birthday <br />   To My Universe
                     </h1>
-                    <h2 className="text-5xl font-serif italic text-pink-100 my-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                    <h2 className="text-4xl sm:text-5xl font-serif italic text-pink-100 my-3 sm:my-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
                         Prity
                     </h2>
-                    <p className="text-xl font-medium text-pink-100/90 leading-relaxed">
+                    <p className="text-base sm:text-xl font-medium text-pink-100/90 leading-relaxed">
                         If the entire world was a blank canvas, you would be my brightest star.
                     </p>
-                    <p className="mt-6 text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-rose-400">
+                    <p className="mt-5 sm:mt-6 text-sm sm:text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-rose-400">
                         I created this little corner just for you ✨
                     </p>
 
@@ -113,7 +150,7 @@ const FlowOne = () => {
                         whileTap={{ scale: 0.9 }}
                         whileHover={{ scale: 1.05 }}
                         onClick={handleOpen}
-                        className="mt-8 px-8 py-3 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold shadow-[0_0_20px_rgba(219,39,119,0.4)] hover:shadow-[0_0_25px_rgba(219,39,119,0.7)] transition-all"
+                        className="mt-7 sm:mt-8 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 text-white text-sm sm:text-base font-semibold shadow-[0_0_20px_rgba(219,39,119,0.4)] hover:shadow-[0_0_25px_rgba(219,39,119,0.7)] transition-all"
                     >
                         🎁 Open Surprise
                     </motion.button>
@@ -129,7 +166,7 @@ const FlowOne = () => {
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6 }}
-                            className="text-5xl drop-shadow-[0_0_15px_rgba(244,63,94,0.6)]"
+                            className="text-4xl sm:text-5xl drop-shadow-[0_0_15px_rgba(244,63,94,0.6)]"
                         >
                             ✨❤️✨
                         </motion.div>
@@ -138,7 +175,7 @@ const FlowOne = () => {
                             initial={{ opacity: 0, y: -30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.2 }}
-                            className="mt-4 text-xs tracking-[0.25em] uppercase text-pink-300/70 font-bold"
+                            className="mt-4 text-[10px] sm:text-xs tracking-[0.18em] sm:tracking-[0.25em] uppercase text-pink-300/70 font-bold"
                         >
                             Celebrating the birth of
                         </motion.h1>
@@ -147,7 +184,7 @@ const FlowOne = () => {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.7, delay: 0.3 }}
-                            className="text-6xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 drop-shadow-[0_0_20px_rgba(251,113,133,0.4)] py-2"
+                            className="text-5xl sm:text-6xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-pink-300 to-rose-400 drop-shadow-[0_0_20px_rgba(251,113,133,0.4)] py-2"
                         >
                             Prity
                         </motion.h2>
@@ -157,10 +194,10 @@ const FlowOne = () => {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.7, delay: 0.4 }}
-                            className="flex justify-center my-6"
+                            className="flex justify-center my-5 sm:my-6"
                         >
                             <div className="relative p-1 rounded-full bg-gradient-to-tr from-pink-500 via-rose-500 to-pink-600 shadow-[0_0_25px_rgba(236,72,153,0.5)]">
-                                <div className="rounded-full overflow-hidden bg-gray-900 w-28 h-28 flex items-center justify-center border border-white/10">
+                                <div className="rounded-full overflow-hidden bg-gray-900 w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center border border-white/10">
                                     <Image
                                         alt="Prity"
                                         src="/prity.jpg"
@@ -176,7 +213,7 @@ const FlowOne = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.7, delay: 0.6 }}
-                            className="mt-4 text-lg text-pink-100/90 font-medium leading-relaxed"
+                            className="mt-4 text-sm sm:text-lg text-pink-100/90 font-medium leading-relaxed"
                         >
                             May this birthday bring you as much joy as your presence brings to my heart... ✨❤️
                         </motion.p>
@@ -189,7 +226,7 @@ const FlowOne = () => {
                                 whileHover={{ scale: 1.08 }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={() => setShowLetter(true)}
-                                className="group relative mt-8 w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center cursor-pointer"
+                                className="group relative mt-7 sm:mt-8 w-32 h-32 sm:w-44 sm:h-44 flex items-center justify-center cursor-pointer"
                             >
                                 {/* Heart shape background */}
                                 <svg
@@ -224,7 +261,7 @@ const FlowOne = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="z-10 max-w-sm bg-gradient-to-b from-gray-950/60 to-gray-950/20 backdrop-blur-2xl p-8 rounded-[2.5rem] border border-pink-500/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)] text-center relative overflow-hidden"
+                    className="z-10 max-w-sm bg-gradient-to-b from-gray-950/60 to-gray-950/20 backdrop-blur-2xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-pink-500/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)] text-center relative overflow-hidden"
                 >
                     {/* ব্যাকগ্রাউন্ডে একটা সফট গ্লো */}
                     <div className="absolute -top-10 -left-10 w-32 h-32 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -233,13 +270,13 @@ const FlowOne = () => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="text-sm font-bold tracking-[0.3em] uppercase text-pink-400/80 mb-2"
+                        className="text-[10px] sm:text-sm font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-pink-400/80 mb-2"
                     >
                         My Personal Letter
                     </motion.h1>
 
                     <motion.h2
-                        className="text-4xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 drop-shadow-[0_0_15px_rgba(244,114,182,0.3)]"
+                        className="text-3xl sm:text-4xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 drop-shadow-[0_0_15px_rgba(244,114,182,0.3)]"
                     >
                         Dearest Prity... ❤️
                     </motion.h2>
@@ -250,7 +287,7 @@ const FlowOne = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
-                        className="text-pink-100/90 leading-relaxed font-medium text-base text-justify px-1 antialiased"
+                        className="text-pink-100/90 leading-relaxed font-medium text-sm sm:text-base text-justify px-1 antialiased"
                     >
                         Sometimes, I look at you and wonder how one single person can bring so much light into my life. You are my peaceful escape, my happiest thought, and the beautiful melody behind my every smile.
                         <br /><br />
@@ -266,9 +303,9 @@ const FlowOne = () => {
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.98 }}
                         onClick={() => setShowGallery(true)}
-                        className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-pink-600 via-rose-600 to-pink-600 text-white font-bold tracking-wide shadow-[0_10px_25px_rgba(219,39,119,0.3)] hover:shadow-[0_0_30px_rgba(219,39,119,0.6)] transition-all uppercase text-sm flex justify-center items-center gap-2"
+                        className="w-full py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-pink-600 via-rose-600 to-pink-600 text-white font-bold tracking-wide shadow-[0_10px_25px_rgba(219,39,119,0.3)] hover:shadow-[0_0_30px_rgba(219,39,119,0.6)] transition-all uppercase text-xs sm:text-sm flex justify-center items-center gap-2"
                     >
-                        ✨ Unfold Our Memories <FaAngleDoubleRight  className="text-xl"/>
+                        ✨ Unfold Our Memories <FaAngleDoubleRight className="text-xl" />
                     </motion.button>
                 </motion.div>
             ) : !showReasons ? (
@@ -278,6 +315,7 @@ const FlowOne = () => {
                 >
                     <Gallery
                         onNext={() => setShowReasons(true)}
+                        onBack={handleBack}
                     />
                 </motion.div>
             ) : (
@@ -285,7 +323,7 @@ const FlowOne = () => {
                     {...textAnimation}
                     className="z-10"
                 >
-                    <Reasons />
+                    <Reasons onBack={handleBack} />
                 </motion.div>
             )}
         </main>

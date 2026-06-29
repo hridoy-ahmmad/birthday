@@ -73,7 +73,7 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Right Border with Neon Glow effect */}
-        <div className="fixed right-2 top-14 h-[90vh] flex flex-col justify-between text-xl z-50 pointer-events-none select-none drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
+        <div className="fixed right-2 top-14 min-h-screen flex flex-col justify-between text-xl z-50 pointer-events-none select-none drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
           {verticalHearts.map((heart, index) => (
             <span
               key={`right-${index}`}
@@ -89,7 +89,7 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* Main Content */}
-        <main className="relative z-10 flex-1 px-12 py-12">
+        <main className="relative z-10 flex-1 px-6">
           {children}
         </main>
 
