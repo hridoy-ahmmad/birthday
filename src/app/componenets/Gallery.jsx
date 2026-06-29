@@ -20,9 +20,9 @@ const Gallery = ({ onNext, onBack }) => {
                 whileTap={{ scale: 0.92 }}
                 onClick={onBack}
                 aria-label="Go back"
-                className="absolute left-2 -top-40 z-30 text-pink-100 hover:text-white drop-shadow-[0_0_12px_rgba(244,114,182,0.7)] transition-colors"
+                className="absolute left-1 -top-1 z-30 text-pink-100 hover:text-white drop-shadow-[0_0_12px_rgba(244,114,182,0.7)] transition-colors"
             >
-                <FaArrowAltCircleLeft className="text-4xl" />
+                <FaArrowAltCircleLeft className="text-xl" />
             </motion.button>
 
             {/* ব্যাকগ্রাউন্ডে জাদুকরী গ্লো ইফেক্ট */}
@@ -44,7 +44,7 @@ const Gallery = ({ onNext, onBack }) => {
                     transition={{ duration: 0.7 }}
                     className="text-4xl sm:text-5xl font-serif italic font-black text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-200 to-rose-300 drop-shadow-[0_0_15px_rgba(244,114,182,0.3)] py-1"
                 >
-                    Our Memories ❤️
+                    Our Memories 
                 </motion.h1>
             </div>
 

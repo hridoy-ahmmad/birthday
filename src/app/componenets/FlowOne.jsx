@@ -122,13 +122,14 @@ const FlowOne = () => {
                         <div className="relative p-1 rounded-full bg-gradient-to-tr from-pink-500 via-rose-500 to-rose-600 shadow-[0_0_25px_rgba(244,63,94,0.4)] transition-transform duration-500 hover:scale-105">
                             {/* ইমেজের চারপাশে ডার্ক গ্লাস রিং */}
                             <div className="rounded-full overflow-hidden bg-gray-950 w-32 h-32 sm:w-[150px] sm:h-[150px] flex items-center justify-center border border-white/10">
-                                <Image
+                                {/* <Image
                                     alt="Us"
                                     src="/us.jpg"
                                     height={150}
                                     width={150}
                                     className="w-full h-full object-cover"
-                                />
+                                /> */}
+                                <p> <span className="text-serif font-bold text-6xl">24</span> <br /> Oct</p>
                             </div>
                         </div>
                     </div>
@@ -136,7 +137,7 @@ const FlowOne = () => {
                         Happy Birthday <br />   To My Universe
                     </h1>
                     <h2 className="text-4xl sm:text-5xl font-serif italic text-pink-100 my-3 sm:my-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                        Prity
+                      Tasfiah Haque Prity
                     </h2>
                     <p className="text-base sm:text-xl font-medium text-pink-100/90 leading-relaxed">
                         If the entire world was a blank canvas, you would be my brightest star.
@@ -248,7 +249,7 @@ const FlowOne = () => {
                                 {/* Text */}
                                 <div className="flex flex-col justify-center items-center">
                                     <span className="relative z-10  text-center text-white text-[10px] sm:text-xs font-bold tracking-wider uppercase leading-tight">
-                                        Click Here Open My Heart
+                                        Click Here Open <br /> My Heart
                                     </span>
                                     <FaArrowAltCircleRight className="text-xl z-10 " />
                                 </div>
