@@ -26,7 +26,7 @@ const Gallery = ({ onNext, onBack }) => {
             </motion.button>
 
             {/* ব্যাকগ্রাউন্ডে জাদুকরী গ্লো ইফেক্ট */}
-            <div className="absolute -top-20 inset-x-0 h-40 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-x-0  bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
 
             {/* হেডিং টাইপোগ্রাফি আপগ্রেড */}
             <div className="mb-8">
