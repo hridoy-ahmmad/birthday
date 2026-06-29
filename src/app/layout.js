@@ -11,31 +11,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
+// এখানে icons প্রোপার্টি যুক্ত করা হয়েছে
 export const metadata = {
-  title: "Happy Birthday Prity ❤️",
+  title: "Happy Birthday Prity 💖",
   description: "A special birthday surprise made with love.",
   icons: {
-    icon: '/heart.jpg',
-    type: "image/jpeg"
+    icon: "/heart.png",
   },
-}
+};
 
 export default function RootLayout({ children }) {
-  const horizontalHearts = Array(35).fill("❤️");
-  const verticalHearts = Array(18).fill("❤️");
-
+  const horizontalHearts = Array(35).fill("💖");
+  const verticalHearts = Array(18).fill("💖");
 
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-
     >
-      <body className="relative min-h-screen overflow-x-hidden bg-linear-to-br from-pink-200 via-rose-50 to-pink-200">
+      <body className="relative min-h-screen overflow-x-hidden bg-linear-to-br from-gray-950 via-gray-900 to-pink-950 text-pink-50">
 
-        {/* Top Border */}
-        <div className="fixed top-2 left-0 w-full flex justify-center gap-1 text-xl z-50 pointer-events-none select-none">
+        <div className="fixed top-2 left-0 w-full flex justify-center gap-1 text-xl z-50 pointer-events-none select-none drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
           {horizontalHearts.map((heart, index) => (
             <span
               key={`top-${index}`}
@@ -47,8 +43,8 @@ export default function RootLayout({ children }) {
           ))}
         </div>
 
-        {/* Bottom Border */}
-        <div className="fixed bottom-2 left-0 w-full flex justify-center gap-1 text-xl z-50 pointer-events-none select-none">
+        {/* Bottom Border with Neon Glow effect */}
+        <div className="fixed bottom-2 left-0 w-full flex justify-center gap-1 text-xl z-50 pointer-events-none select-none drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
           {horizontalHearts.map((heart, index) => (
             <span
               key={`bottom-${index}`}
@@ -60,8 +56,8 @@ export default function RootLayout({ children }) {
           ))}
         </div>
 
-        {/* Left Border */}
-        <div className="fixed left-2 top-14 h-[90vh] flex flex-col justify-between text-xl z-50 pointer-events-none select-none">
+        {/* Left Border with Neon Glow effect */}
+        <div className="fixed left-2 top-14 h-[90vh] flex flex-col justify-between text-xl z-50 pointer-events-none select-none drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
           {verticalHearts.map((heart, index) => (
             <span
               key={`left-${index}`}
@@ -76,8 +72,8 @@ export default function RootLayout({ children }) {
           ))}
         </div>
 
-        {/* Right Border */}
-        <div className="fixed right-2 top-14 h-[90vh] flex flex-col justify-between text-xl z-50 pointer-events-none select-none">
+        {/* Right Border with Neon Glow effect */}
+        <div className="fixed right-2 top-14 h-[90vh] flex flex-col justify-between text-xl z-50 pointer-events-none select-none drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
           {verticalHearts.map((heart, index) => (
             <span
               key={`right-${index}`}
@@ -95,7 +91,6 @@ export default function RootLayout({ children }) {
         {/* Main Content */}
         <main className="relative z-10 flex-1 px-12 py-12">
           {children}
-
         </main>
 
       </body>

@@ -5,6 +5,7 @@ import Confetti from "react-confetti";
 import { motion } from "framer-motion";
 import Gallery from "./Gallery";
 import Reasons from "./Reasons";
+import Image from "next/image";
 
 const balloons = [
     { left: "8%", top: "8%" },
@@ -36,56 +37,31 @@ const FlowOne = () => {
 
         updateSize();
 
-        window.addEventListener(
-            "resize",
-            updateSize
-        );
-
-        return () => window.removeEventListener(
-            "resize",
-            updateSize
-        );
+        window.addEventListener("resize", updateSize);
+        return () => window.removeEventListener("resize", updateSize);
     }, []);
 
     const handleOpen = () => {
         setOpen(true);
-
         setTimeout(() => {
             audioRef.current?.play();
         }, 300);
     };
 
     const textAnimation = {
-        initial: {
-            opacity: 0,
-            y: -60
-        },
-        animate: {
-            opacity: 1,
-            y: 0
-        },
-        transition: {
-            duration: 0.7
-        }
+        initial: { opacity: 0, y: -60 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7 }
     };
 
     const buttonAnimation = {
-        initial: {
-            opacity: 0,
-            y: 80
-        },
-        animate: {
-            opacity: 1,
-            y: 0
-        },
-        transition: {
-            duration: 0.7,
-            delay: 0.3
-        }
+        initial: { opacity: 0, y: 80 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.7, delay: 0.3 }
     };
 
     return (
-        <main className="relative min-h-screen flex items-center justify-center overflow-hidden px-5 ">
+        <main className="relative min-h-screen flex items-center justify-center overflow-hidden px-5">
             <audio ref={audioRef}>
                 <source src="/birthday.mp3" type="audio/mpeg" />
             </audio>
@@ -104,10 +80,11 @@ const FlowOne = () => {
                     {...textAnimation}
                     className="text-center"
                 >
-                    <h1 className="text-3xl font-bold text-pink-700 leading-snug">
+                    {/* ডার্ক থিমে টেক্সট ফুটিয়ে তোলার জন্য কালার পরিবর্তন করা হলো */}
+                    <h1 className="text-3xl font-bold text-pink-100 leading-snug drop-shadow-[0_2px_10px_rgba(244,63,94,0.2)]">
                         Hey
                         <br />
-                        <span className="text-5xl italic text-rose-600">
+                        <span className="text-6xl italic font-black text-rose-400 drop-shadow-[0_0_15px_rgba(251,113,133,0.6)]">
                             Prity
                         </span>
                         <br />
@@ -119,7 +96,7 @@ const FlowOne = () => {
                         whileTap={{ scale: 0.9 }}
                         whileHover={{ scale: 1.05 }}
                         onClick={handleOpen}
-                        className="mt-8 px-8 py-3 rounded-full bg-pink-600 text-white font-semibold shadow-lg"
+                        className="mt-8 px-8 py-3 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold shadow-[0_0_20px_rgba(219,39,119,0.4)] hover:shadow-[0_0_25px_rgba(219,39,119,0.7)] transition-all"
                     >
                         🎁 Open Surprise
                     </motion.button>
@@ -129,52 +106,23 @@ const FlowOne = () => {
                     {...textAnimation}
                     className="relative z-10 text-center"
                 >
-                    {balloons.map((item, index) => (
-                        <span
-                            key={index}
-                            className="absolute text-4xl animate-bounce"
-                            style={{
-                                left: item.left,
-                                top: item.top
-                            }}
-                        >
-                            🎈
-                        </span>
-                    ))}
+                   
 
                     <div>
-
                         <motion.div
-                            initial={{
-                                opacity: 0,
-                                scale: 0.5
-                            }}
-                            animate={{
-                                opacity: 1,
-                                scale: 1
-                            }}
-                            transition={{
-                                duration: 0.6
-                            }}
-                            className="text-6xl"
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6 }}
+                            className="text-6xl drop-shadow-[0_0_15px_rgba(219,39,119,0.5)]"
                         >
                             🎂
                         </motion.div>
 
                         <motion.h1
-                            initial={{
-                                opacity: 0,
-                                y: -50
-                            }}
-                            animate={{
-                                opacity: 1,
-                                y: 0
-                            }}
-                            transition={{
-                                duration: 0.7,
-                                delay: 0.2
-                            }}
-                            className="mt-3 text-4xl font-black text-pink-600"
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.2 }}
+                            className="mt-3 text-4xl font-black text-pink-200"
                         >
                             Happy
                             <br />
@@ -182,62 +130,48 @@ const FlowOne = () => {
                         </motion.h1>
 
                         <motion.h2
-                            initial={{
-                                opacity: 0,
-                                y: -40
-                            }}
-                            animate={{
-                                opacity: 1,
-                                y: 0
-                            }}
-                            transition={{
-                                duration: 0.7,
-                                delay: 0.4
-                            }}
-                            className="mt-2 text-6xl italic font-bold text-rose-600"
+                            initial={{ opacity: 0, y: -40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.4 }}
+                            className="mt-2 text-6xl italic font-extrabold text-rose-400 drop-shadow-[0_0_15px_rgba(251,113,133,0.5)]"
                         >
-                            Prity ❤️
+                            Prity
                         </motion.h2>
 
+                        <motion.div
+                            initial={{ opacity: 0, y: -40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.4 }}
+                            className="flex justify-center my-6">
+                            <div className="relative p-1 rounded-full bg-linear-to-tr from-pink-500 via-rose-500 to-pink-600 shadow-[0_0_20px_rgba(236,72,153,0.6)] animate-pulse">
+                                <div className="rounded-full overflow-hidden bg-gray-900 w-25 h-25 flex items-center justify-center">
+                                    <Image
+                                        alt="Prity"
+                                        src="/prity.jpg"
+                                        height={100}
+                                        width={100}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
+                        </motion.div>
                         <motion.p
-                            initial={{
-                                opacity: 0,
-                                y: 40
-                            }}
-                            animate={{
-                                opacity: 1,
-                                y: 0
-                            }}
-                            transition={{
-                                duration: 0.7,
-                                delay: 0.6
-                            }}
-                            className="mt-4 text-gray-700"
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.6 }}
+                            className="mt-4 text-pink-100/80 font-medium"
                         >
                             Wishing you endless happiness ✨
                         </motion.p>
 
                         <motion.button
-                            initial={{
-                                opacity: 0,
-                                y: 100
-                            }}
-                            animate={{
-                                opacity: 1,
-                                y: 0
-                            }}
-                            transition={{
-                                duration: 0.7,
-                                delay: 0.8
-                            }}
-                            whileHover={{
-                                scale: 1.05
-                            }}
-                            whileTap={{
-                                scale: 0.9
-                            }}
+                            initial={{ opacity: 0, y: 100 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.8 }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={() => setShowLetter(true)}
-                            className="mt-8 px-7 py-3 rounded-full bg-rose-600 text-white font-semibold"
+                            className="mt-8 px-7 py-3 rounded-full bg-gradient-to-r from-rose-600 to-pink-600 text-white font-semibold shadow-[0_0_20px_rgba(225,29,72,0.4)]"
                         >
                             💌 Click here to see more
                         </motion.button>
@@ -245,75 +179,43 @@ const FlowOne = () => {
                 </motion.div>
             ) : !showGallery ? (
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                        y: -50
-                    }}
-                    animate={{
-                        opacity: 1,
-                        y: 0
-                    }}
-                    transition={{
-                        duration: 0.8
-                    }}
-                    className="z-10 max-w-sm bg-white/70 backdrop-blur-lg p-6 rounded-3xl shadow-xl text-center"
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    // লেটার বক্সটিকে সাদা থেকে পরিবর্তন করে প্রিমিয়াম ডার্ক গ্লাস ইফেক্ট দেওয়া হলো
+                    className="z-10 max-w-sm bg-gray-950/40 backdrop-blur-xl p-6 rounded-3xl border border-pink-500/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] text-center"
                 >
                     <motion.h1
-                        initial={{
-                            opacity: 0,
-                            y: -40
-                        }}
-                        animate={{
-                            opacity: 1,
-                            y: 0
-                        }}
-                        transition={{
-                            duration: 0.6
-                        }}
-                        className="text-4xl font-bold text-pink-600"
+                        initial={{ opacity: 0, y: -40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-4xl font-bold text-pink-300 drop-shadow-[0_0_10px_rgba(244,114,182,0.4)]"
                     >
                         Dear Prity ❤️
                     </motion.h1>
 
                     <motion.p
-                        initial={{
-                            opacity: 0,
-                            y: 40
-                        }}
-                        animate={{
-                            opacity: 1,
-                            y: 0
-                        }}
-                        transition={{
-                            duration: 0.8,
-                            delay: 0.3
-                        }}
-                        className="mt-5 text-gray-700 leading-relaxed"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                        className="mt-5 text-pink-100/90 leading-relaxed font-medium"
                     >
                         Happy Birthday 🎂
                         <br /><br />
                         May your life always be full of happiness,
+                        <br />
                         smiles and beautiful moments.
                         <br /><br />
                         Keep smiling always ❤️
                     </motion.p>
 
                     <motion.button
-                        initial={{
-                            opacity: 0,
-                            y: 80
-                        }}
-                        animate={{
-                            opacity: 1,
-                            y: 0
-                        }}
-                        transition={{
-                            duration: 0.7,
-                            delay: 0.6
-                        }}
+                        initial={{ opacity: 0, y: 80 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.6 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setShowGallery(true)}
-                        className="mt-8 px-8 py-3 rounded-full bg-pink-600 text-white font-semibold"
+                        className="mt-8 px-8 py-3 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold shadow-[0_4px_15px_rgba(219,39,119,0.4)]"
                     >
                         📸 See Memories
                     </motion.button>
